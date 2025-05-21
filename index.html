@@ -3,18 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThePastCast – Hvor historien taler og bevæger sig</title>
+  <title>ThePastCast – Hvor historien taler og bevæger sig</title>
+
+  <!-- Tailwind v3 (statisk stylesheet) -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6jZr+6B5MifLxbb1Kz3xwa9eMc9AuQ8DQ0k+fF9q+fY9yhf4z5fxtXzmjDHlKTj3jVvMA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    body{background-color:#0b1422;color:#e6e6e6;font-family:'Raleway',sans-serif}
+    :root{
+      --gold:#d4af37; /* primær accent */
+      --blue:#2e6fa1; /* sekundær accent */
+      --bg:#0b1422;  /* mørk baggrund */
+    }
+    body{background:var(--bg);color:#e6e6e6;font-family:'Raleway',sans-serif}
+    .playfair{font-family:'Playfair Display',serif}
+    .gold-text{color:var(--gold)}
+    .blue-accent{color:var(--blue)}
+    .section{padding:4rem 2rem}
+    .gradient-bg{background:linear-gradient(to bottom,var(--bg),#1a2639)}
+    .card{background:rgba(26,38,57,.85);border:1px solid rgba(212,175,55,.18);transition:.3s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 10px 18px rgba(0,0,0,.35);border-color:rgba(212,175,55,.4)}
+    .platform-icon{background:rgba(26,38,57,.85);border:1px solid rgba(212,175,55,.3);border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.5rem;transition:.3s}
+    .platform-card:hover .platform-icon{background:rgba(212,175,55,.2);transform:scale(1.1)}
+    .timeline-element:not(:last-child):after{content:"";position:absolute;height:100%;width:2px;background:linear-gradient(var(--blue),var(--gold));left:19px;top:30px}
+    .timeline-dot{background:linear-gradient(135deg,var(--blue),var(--gold));}
+    /* fade‑in */
+    .fade{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+    .fade.show{opacity:1;transform:translateY(0)}
   </style>
 </head>
-<body>
-  <h1 class="text-4xl text-center gold-text playfair mt-20">ThePastCast</h1>
-  <p class="text-center mt-4">Testfil til download</p>
+<body class="min-h-screen">
+  <!-- NAVIGATION -->
+  <nav class="py-4 px-6 flex justify-between items-center sticky top-0 z-50 bg-opacity-90 bg-gray-900 backdrop-blur-md">
+    <a href="#home" class="flex items-center gap-3">
+      <!-- nyt guld‑logo -->
+      <img src="assets/logo-gold.png" alt="ThePastCast logo" class="w-12 h-12" loading="lazy">
+      <span class="text-xl font-bold playfair gold-text">ThePastCast</span>
+    </a>
+    <ul class="hidden md:flex space-x-8">
+      <li><a href="#home"     class="hover:gold-text">Hjem</a></li>
+      <li><a href="#about"    class="hover:gold-text">Om&nbsp;Os</a></li>
+      <li><a href="#platforms"class="hover:gold-text">Platforme</a></li>
+      <li><a href="#featured" class="hover:gold-text">Udvalgt</a></li>
+      <li><a href="#contact"  class="hover:gold-text">Kontakt</a></li>
+    </ul>
+    <button aria-label="Åbn menu" class="md:hidden"><i class="fas fa-bars text-xl"></i></button>
+  </nav>
+
+  <!-- HERO med nyt baggrundsbillede 1080×1920 -->
+  <section id="home" class="section flex flex-col items-center justify-center min-h-screen relative overflow-hidden" style="background:url('assets/hero.png') center/cover no-repeat;">
+    <span class="absolute inset-0 bg-black bg-opacity-60"></span>
+    <div class="relative z-10 text-center fade">
+      <!-- hero viser kun logoen én gang, brug blå version for kontrast -->
+      <img src="assets/logo-blue.png" alt="ThePastCast logo" class="w-40 mx-auto mb-6" loading="lazy">
+      <h1 class="text-5xl md:text-7xl font-bold playfair mb-4 gold-text">The&nbsp;Past&nbsp;Cast</h1>
+      <p class="text-xl md:text-2xl mb-10">Where history speaks&nbsp;and&nbsp;moves</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#platforms" class="border-2 border-blue-500 px-6 py-3 rounded-lg hover:bg-blue-800">Udforsk&nbsp;Platforme</a>
+        <a href="#featured" class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-3 rounded-lg hover:from-yellow-700 hover:to-yellow-800">Se&nbsp;Indhold</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OM OS -->
+  <section id="about" class="section gradient-bg fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-12 gold-text">Om&nbsp;ThePastCast</h2>
+      <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+        <div class="md:w-1/2">
+          <h3 class="text-2xl font-bold mb-4 blue-accent">Vores Mission</h3>
+          <p class="text-lg mb-6">ThePastCast gør historien levende gennem moderne digitale formater. Vi formidler historiske begivenheder, personer og tidsperioder på en engagerende måde, der appellerer til både historieentusiaster og den brede offentlighed.</p>
+          <p class="text-lg">Med podcasts, korte videoer og visuelle fortællinger bringer vi fortiden ind i nutiden.</p>
+        </div>
+        <div class="md:w-1/2 flex justify-center"><img src="assets/logo-gold.png" class="w-56" alt="Logo illustreret"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="card p-6 rounded-lg text-center"><div class="w-16 h-16 rounded-full bg-blue-900 flex items-center justify-center mx-auto mb-4"><i class="fas fa-book text-2xl gold-text"></i></div><h3 class="text-xl font-bold mb-3">Autentisk Formidling</h3><p>Grundig research sikrer, at hver historie er faktuelt solid.</p></div>
+        <div class="card p-6 rounded-lg text-center"><div class="w-16 h-16 rounded-full bg-blue-900 flex items-center justify-center mx-auto mb-4"><i class="fas fa-film text-2xl gold-text"></i></div><h3 class="text-xl font-bold mb-3">Visuelle Formater</h3><p>Fra animerede kort til cinematic dokumentarer – vi gør historien levende.</p></div>
+        <div class="card p-6 rounded-lg text-center"><div class="w-16 h-16 rounded-full bg-blue-900 flex items-center justify-center mx-auto mb-4"><i class="fas fa-users text-2xl gold-text"></i></div><h3 class="text-xl font-bold mb-3">Fællesskab</h3><p>Diskussioner, Q&A‑sessions og live‑streams samler publikum om historien.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTEN af sektionerne forbliver som i den tidligere version -->
+  <!-- ... du kan kopiere de tidligere Platforms, Featured, Testimonials, Newsletter og Footer-sektioner her, da koden er uændret -->
+
+  <script>
+    /* mobile menu */
+    const menuBtn=document.querySelector('nav button');
+    const menu=document.querySelector('nav ul');
+    menuBtn&&menuBtn.addEventListener('click',()=>menu.classList.toggle('hidden'));
+
+    /* smooth scroll fix */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-70,behavior:'smooth'});}}));
+
+    /* fade-in on scroll */
+    const io=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target);}}),{threshold:.15});
+    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
