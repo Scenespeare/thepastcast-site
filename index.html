@@ -37,6 +37,7 @@
     /* fade‑in */
     .fade{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
     .fade.show{opacity:1;transform:translateY(0)}
+    .nav-link{transition:color .3s}.nav-link:hover{color:var(--gold)}
   </style>
 </head>
 <body class="min-h-screen">
@@ -48,11 +49,11 @@
       <span class="text-xl font-bold playfair gold-text">ThePastCast</span>
     </a>
     <ul class="hidden md:flex space-x-8">
-      <li><a href="#home"     class="hover:gold-text">Hjem</a></li>
-      <li><a href="#about"    class="hover:gold-text">Om&nbsp;Os</a></li>
-      <li><a href="#platforms"class="hover:gold-text">Platforme</a></li>
-      <li><a href="#featured" class="hover:gold-text">Udvalgt</a></li>
-      <li><a href="#contact"  class="hover:gold-text">Kontakt</a></li>
+      <li><a href="#home" class="nav-link">Hjem</a></li>
+      <li><a href="#about" class="nav-link">Om&nbsp;Os</a></li>
+      <li><a href="#platforms" class="nav-link">Platforme</a></li>
+      <li><a href="#featured" class="nav-link">Udvalgt</a></li>
+      <li><a href="#contact" class="nav-link">Kontakt</a></li>
     </ul>
     <button aria-label="Åbn menu" class="md:hidden"><i class="fas fa-bars text-xl"></i></button>
   </nav>
@@ -92,8 +93,164 @@
     </div>
   </section>
 
-  <!-- RESTEN af sektionerne forbliver som i den tidligere version -->
-  <!-- ... du kan kopiere de tidligere Platforms, Featured, Testimonials, Newsletter og Footer-sektioner her, da koden er uændret -->
+  <!-- PLATFORMS -->
+  <section id="platforms" class="section fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Vores&nbsp;Platforme</h2>
+      <p class="text-center max-w-3xl mx-auto mb-12">ThePastCast er tilgængelig på forskellige platforme, så du kan opleve historien på den måde, du foretrækker</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="platform-card card p-6 rounded-lg text-center">
+          <div class="platform-icon"><i class="fab fa-youtube"></i></div>
+          <h3 class="text-xl font-bold mb-3">YouTube</h3>
+          <p class="mb-4">Dybdegående historiske dokumentarer og serier med visuelle rekonstruktioner og ekspertinterviews.</p>
+          <a href="#" class="inline-block text-blue-400 hover:text-blue-300"><i class="fas fa-external-link-alt mr-2"></i>Besøg&nbsp;Kanal</a>
+        </div>
+        <div class="platform-card card p-6 rounded-lg text-center">
+          <div class="platform-icon"><i class="fab fa-tiktok"></i></div>
+          <h3 class="text-xl font-bold mb-3">TikTok</h3>
+          <p class="mb-4">Korte, engagerende historiske facts og sjove historiske kuriositeter i et moderne format.</p>
+          <a href="#" class="inline-block text-blue-400 hover:text-blue-300"><i class="fas fa-external-link-alt mr-2"></i>Besøg&nbsp;Profil</a>
+        </div>
+        <div class="platform-card card p-6 rounded-lg text-center">
+          <div class="platform-icon"><i class="fab fa-facebook"></i></div>
+          <h3 class="text-xl font-bold mb-3">Meta</h3>
+          <p class="mb-4">Historiske opslag, diskussioner og events på Facebook og Instagram for vores fællesskab.</p>
+          <a href="#" class="inline-block text-blue-400 hover:text-blue-300"><i class="fas fa-external-link-alt mr-2"></i>Følg&nbsp;Os</a>
+        </div>
+        <div class="platform-card card p-6 rounded-lg text-center">
+          <div class="platform-icon"><i class="fas fa-podcast"></i></div>
+          <h3 class="text-xl font-bold mb-3">Podcast</h3>
+          <p class="mb-4">Fordyb dig i fascinerende historiske samtaler og fortællinger på alle større podcast-platforme.</p>
+          <a href="#" class="inline-block text-blue-400 hover:text-blue-300"><i class="fas fa-external-link-alt mr-2"></i>Lyt&nbsp;Nu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section id="featured" class="section gradient-bg fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Udvalgt&nbsp;Indhold</h2>
+      <p class="text-center max-w-3xl mx-auto mb-12">Udforsk nogle af vores mest populære historiske fortællinger</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card overflow-hidden rounded-lg">
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+            <i class="fab fa-youtube text-4xl gold-text"></i>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3">
+              <div class="platform-icon text-sm w-8 h-8 mr-2"><i class="fab fa-youtube"></i></div>
+              <span class="text-sm text-gray-400">YouTube&nbsp;Serie</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Romerrigets Fald</h3>
+            <p class="text-gray-300 mb-4">En dybdegående serie om de faktorer, der førte til det mægtige Romeriges kollaps.</p>
+            <a href="#" class="gold-text hover:underline text-sm"><i class="fas fa-play mr-1"></i>Se&nbsp;Serien</a>
+          </div>
+        </div>
+        <div class="card overflow-hidden rounded-lg">
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+            <i class="fas fa-podcast text-4xl gold-text"></i>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3">
+              <div class="platform-icon text-sm w-8 h-8 mr-2"><i class="fas fa-podcast"></i></div>
+              <span class="text-sm text-gray-400">Podcast&nbsp;Episode</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Vikingernes Verden</h3>
+            <p class="text-gray-300 mb-4">Udforsk vikingernes kultur, rejser og indflydelse på den moderne verden.</p>
+            <a href="#" class="gold-text hover:underline text-sm"><i class="fas fa-headphones mr-1"></i>Lyt&nbsp;Nu</a>
+          </div>
+        </div>
+        <div class="card overflow-hidden rounded-lg">
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+            <i class="fab fa-tiktok text-4xl gold-text"></i>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-3">
+              <div class="platform-icon text-sm w-8 h-8 mr-2"><i class="fab fa-tiktok"></i></div>
+              <span class="text-sm text-gray-400">TikTok&nbsp;Serie</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Den Franske Revolution</h3>
+            <p class="text-gray-300 mb-4">Korte, dramatiske klip om revolutionens vigtigste øjeblikke og personligheder.</p>
+            <a href="#" class="gold-text hover:underline text-sm"><i class="fas fa-play mr-1"></i>Se&nbsp;Klip</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-12 gold-text">Hvad Lytterne Siger</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card p-6 rounded-lg">
+          <div class="mb-4 gold-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="mb-4 italic">"ThePastCast gør historien utroligt spændende og tilgængelig. Jeg har lært mere her end i mange år i skolen!"</p>
+          <p class="font-bold gold-text">– Maria K.</p>
+        </div>
+        <div class="card p-6 rounded-lg">
+          <div class="mb-4 gold-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="mb-4 italic">"De bedste historiske podcasts på dansk. Grundig research og fantastisk formidling hver eneste gang."</p>
+          <p class="font-bold gold-text">– Anders P.</p>
+        </div>
+        <div class="card p-6 rounded-lg">
+          <div class="mb-4 gold-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="mb-4 italic">"TikTok-videoerne er geniale! Korte, sjove og lærerige. Perfekt til at dele med venner og familie."</p>
+          <p class="font-bold gold-text">– Sofie L.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / NEWSLETTER -->
+  <section id="contact" class="section gradient-bg fade">
+    <div class="container mx-auto max-w-2xl text-center">
+      <h2 class="text-4xl font-bold playfair mb-4 gold-text">Hold Dig Opdateret</h2>
+      <p class="text-lg mb-8">Tilmeld dig vores nyhedsbrev og få besked om nye episoder, events og eksklusive historier direkte i din indbakke.</p>
+      <form class="flex flex-col sm:flex-row gap-4 justify-center" onsubmit="event.preventDefault();alert('Tak for din tilmelding!');">
+        <input type="email" required placeholder="Din e-mailadresse" class="px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white flex-1 focus:outline-none focus:border-yellow-600">
+        <button type="submit" class="px-8 py-3 rounded-lg font-bold text-black" style="background:var(--gold)">Tilmeld</button>
+      </form>
+      <p class="text-sm text-gray-500 mt-4">Vi sender kun relevante opdateringer – ingen spam.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 px-6" style="background:#070d17">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/logo-gold.webp" alt="ThePastCast logo" class="w-10 h-10" loading="lazy">
+          <span class="text-lg font-bold playfair gold-text">ThePastCast</span>
+        </div>
+        <p class="text-gray-400">Hvor historien taler og bevæger sig. Vi gør fortiden levende gennem moderne digitale formater.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 gold-text">Hurtige Links</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="#home" class="hover:text-white">Hjem</a></li>
+          <li><a href="#about" class="hover:text-white">Om Os</a></li>
+          <li><a href="#platforms" class="hover:text-white">Platforme</a></li>
+          <li><a href="#featured" class="hover:text-white">Udvalgt Indhold</a></li>
+          <li><a href="#contact" class="hover:text-white">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 gold-text">Følg Os</h4>
+        <div class="flex gap-4 text-2xl">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+      <p>&copy; 2025 ThePastCast. Alle rettigheder forbeholdes.</p>
+    </div>
+  </footer>
 
   <script>
     /* mobile menu */
