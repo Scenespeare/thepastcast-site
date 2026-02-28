@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romerriget – ThePastCast</title>
+
+  <link rel="stylesheet" href="tailwind.css" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6jZr+6B5MifLxbb1Kz3xwa9eMc9AuQ8DQ0k+fF9q+fY9yhf4z5fxtXzmjDHlKTj3jVvMA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#d4af37;
+      --blue:#2e6fa1;
+      --bg:#0b1422;
+      --red:#8b2020;
+    }
+    body{background:var(--bg);color:#e6e6e6;font-family:'Raleway',sans-serif}
+    .playfair{font-family:'Playfair Display',serif}
+    .gold-text{color:var(--gold)}
+    .blue-accent{color:var(--blue)}
+    .red-accent{color:#c0392b}
+    .section{padding:4rem 2rem}
+    .gradient-bg{background:linear-gradient(to bottom,var(--bg),#1a2639)}
+    .card{background:rgba(26,38,57,.85);border:1px solid rgba(212,175,55,.18);transition:.3s}
+    .card:hover{transform:translateY(-4px);box-shadow:0 10px 18px rgba(0,0,0,.35);border-color:rgba(212,175,55,.4)}
+    .nav-link{transition:color .3s}.nav-link:hover{color:var(--gold)}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:2.5rem}
+    .timeline::before{content:"";position:absolute;left:0.9rem;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),var(--blue),var(--red),#555)}
+    .timeline-item{position:relative;margin-bottom:2.5rem}
+    .timeline-dot{position:absolute;left:-2.05rem;top:0.35rem;width:18px;height:18px;border-radius:50%;border:3px solid var(--gold);background:var(--bg)}
+    .timeline-item:nth-child(2) .timeline-dot{border-color:var(--blue)}
+    .timeline-item:nth-child(3) .timeline-dot{border-color:#c0392b}
+    .timeline-item:nth-child(4) .timeline-dot{border-color:#555}
+
+    /* Fade-in */
+    .fade{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+    .fade.show{opacity:1;transform:translateY(0)}
+
+    /* Stat counter */
+    .stat-number{font-size:2.5rem;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="py-4 px-6 flex justify-between items-center sticky top-0 z-50 bg-opacity-90 bg-gray-900 backdrop-blur-md">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/logo-gold.webp" alt="ThePastCast logo" class="w-12 h-12" loading="lazy">
+      <span class="text-xl font-bold playfair gold-text">ThePastCast</span>
+    </a>
+    <ul class="hidden md:flex space-x-8">
+      <li><a href="index.html" class="nav-link">Hjem</a></li>
+      <li><a href="#tidslinje" class="nav-link">Tidslinje</a></li>
+      <li><a href="#personer" class="nav-link">Nøglepersoner</a></li>
+      <li><a href="#slag" class="nav-link">Store Slag</a></li>
+      <li><a href="#arv" class="nav-link">Arven</a></li>
+    </ul>
+    <button aria-label="Åbn menu" class="md:hidden" onclick="document.querySelector('nav ul').classList.toggle('hidden')">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="section flex flex-col items-center justify-center min-h-screen relative overflow-hidden" style="background:linear-gradient(135deg,#1a0a0a 0%,#0b1422 40%,#1a2639 100%)">
+    <span class="absolute inset-0 bg-black bg-opacity-40"></span>
+    <div class="relative z-10 text-center fade">
+      <p class="text-lg tracking-widest uppercase mb-4 blue-accent"><i class="fas fa-landmark mr-2"></i>ThePastCast Præsenterer</p>
+      <h1 class="text-5xl md:text-7xl font-bold playfair mb-4 gold-text">Romerriget</h1>
+      <p class="text-xl md:text-2xl mb-2">Fra en lille bystat til verdenshistoriens mægtigste imperium</p>
+      <p class="text-gray-400 mb-10">753 f.Kr. – 476 e.Kr.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#tidslinje" class="border-2 border-yellow-600 px-6 py-3 rounded-lg hover:bg-yellow-900 hover:bg-opacity-40 transition">Udforsk Tidslinjen</a>
+        <a href="#personer" class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-3 rounded-lg hover:from-yellow-700 hover:to-yellow-800 text-black font-bold transition">Mød Personerne</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="py-8 fade" style="background:rgba(26,38,57,.6)">
+    <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="stat-number">1.229</div>
+        <p class="text-gray-400 text-sm">År som imperium</p>
+      </div>
+      <div>
+        <div class="stat-number">5 mio.</div>
+        <p class="text-gray-400 text-sm">km² på sit højeste</p>
+      </div>
+      <div>
+        <div class="stat-number">70 mio.</div>
+        <p class="text-gray-400 text-sm">Indbyggere i år 117 e.Kr.</p>
+      </div>
+      <div>
+        <div class="stat-number">147</div>
+        <p class="text-gray-400 text-sm">Kejsere i alt</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUKTION -->
+  <section class="section gradient-bg fade">
+    <div class="container mx-auto max-w-4xl">
+      <h2 class="text-4xl font-bold playfair text-center mb-8 gold-text">Imperiet der Formede Verden</h2>
+      <div class="text-lg leading-relaxed space-y-6 text-gray-300">
+        <p>Romerriget er en af verdenshistoriens mest fascinerende civilisationer. Fra sin beskedne begyndelse som en lille landsby ved Tiberen voksede Rom til et imperium, der strakte sig fra Britanniens tågebelagte kyster til Mesopotamiens ørkenlandskaber.</p>
+        <p>Romerne efterlod os et arv, der stadig præger vores hverdag: retssystemer, infrastruktur, arkitektur, sprog og politiske idéer. At forstå Romerriget er at forstå fundamentet for den vestlige civilisation.</p>
+        <p>ThePastCast dykker ned i Romerrigets historie – fra kongetiden over republikken til kejserdømmet og det endelige fald. Her finder du tidslinjer, nøglepersoner, afgørende slag og den arv, vi lever med den dag i dag.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIDSLINJE -->
+  <section id="tidslinje" class="section fade">
+    <div class="container mx-auto max-w-4xl">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Tidslinje</h2>
+      <p class="text-center text-gray-400 mb-12">Fire epoker der definerede et imperium</p>
+
+      <div class="timeline">
+        <!-- Kongetiden -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card p-6 rounded-lg">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(212,175,55,.2);color:var(--gold)">753 – 509 f.Kr.</span>
+            </div>
+            <h3 class="text-2xl font-bold playfair mb-3 gold-text">Kongetiden</h3>
+            <p class="text-gray-300 mb-4">Ifølge legenden grundlagde Romulus byen Rom i 753 f.Kr. I næsten 250 år blev Rom styret af syv konger – fra Romulus til den forhade Tarquinius Superbus, hvis tyranni førte til monarkiets fald.</p>
+            <ul class="text-gray-400 text-sm space-y-1">
+              <li><i class="fas fa-chevron-right text-xs gold-text mr-2"></i>753 f.Kr. – Romulus grundlægger Rom</li>
+              <li><i class="fas fa-chevron-right text-xs gold-text mr-2"></i>Syv konger regerer over den voksende bystat</li>
+              <li><i class="fas fa-chevron-right text-xs gold-text mr-2"></i>509 f.Kr. – Tarquinius Superbus styrtes, republikken fødes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Republikken -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card p-6 rounded-lg">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(46,111,161,.2);color:var(--blue)">509 – 27 f.Kr.</span>
+            </div>
+            <h3 class="text-2xl font-bold playfair mb-3 blue-accent">Den Romerske Republik</h3>
+            <p class="text-gray-300 mb-4">Republikken blev styret af Senatet og folkevalgte embedsmænd. Det var i denne periode, Rom udvidede sin magt over hele Middelhavet – gennem Punerkrigene mod Karthago, erobringen af Grækenland og ekspansion ind i Gallien.</p>
+            <ul class="text-gray-400 text-sm space-y-1">
+              <li><i class="fas fa-chevron-right text-xs blue-accent mr-2"></i>264–146 f.Kr. – De tre Punerkrige mod Karthago</li>
+              <li><i class="fas fa-chevron-right text-xs blue-accent mr-2"></i>49 f.Kr. – Julius Cæsar krydser Rubicon</li>
+              <li><i class="fas fa-chevron-right text-xs blue-accent mr-2"></i>44 f.Kr. – Cæsar myrdes på Idus Martiae</li>
+              <li><i class="fas fa-chevron-right text-xs blue-accent mr-2"></i>31 f.Kr. – Octavian besejrer Antonius ved Actium</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Kejserdømmet -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card p-6 rounded-lg">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(192,57,43,.2);color:#c0392b">27 f.Kr. – 395 e.Kr.</span>
+            </div>
+            <h3 class="text-2xl font-bold playfair mb-3 red-accent">Kejserdømmet</h3>
+            <p class="text-gray-300 mb-4">Augustus blev den første kejser og indledte Pax Romana – 200 års relativ fred og velstand. Riget nåede sin maksimale udstrækning under Trajan i 117 e.Kr. Men interne magtkampe, økonomisk krise og ydre pres begyndte langsomt at svække imperiet.</p>
+            <ul class="text-gray-400 text-sm space-y-1">
+              <li><i class="fas fa-chevron-right text-xs red-accent mr-2"></i>27 f.Kr. – Augustus bliver den første kejser</li>
+              <li><i class="fas fa-chevron-right text-xs red-accent mr-2"></i>80 e.Kr. – Colosseum indvies i Rom</li>
+              <li><i class="fas fa-chevron-right text-xs red-accent mr-2"></i>117 e.Kr. – Rigets maksimale udstrækning under Trajan</li>
+              <li><i class="fas fa-chevron-right text-xs red-accent mr-2"></i>284 e.Kr. – Diokletian deler riget i Tetrarkiet</li>
+              <li><i class="fas fa-chevron-right text-xs red-accent mr-2"></i>313 e.Kr. – Konstantin legaliserer kristendommen</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Faldet -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="card p-6 rounded-lg">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full" style="background:rgba(100,100,100,.2);color:#999">395 – 476 e.Kr.</span>
+            </div>
+            <h3 class="text-2xl font-bold playfair mb-3" style="color:#999">Vestromerigets Fald</h3>
+            <p class="text-gray-300 mb-4">Efter delingen i 395 e.Kr. kæmpede det vestromerske rige med barbarerinvasioner, korruption og økonomisk kollaps. I 410 blev Rom plyndret af visigoterne – første gang i 800 år. Den sidste vestromerske kejser, Romulus Augustulus, blev afsat i 476.</p>
+            <ul class="text-gray-400 text-sm space-y-1">
+              <li><i class="fas fa-chevron-right text-xs mr-2" style="color:#999"></i>395 e.Kr. – Riget deles permanent i øst og vest</li>
+              <li><i class="fas fa-chevron-right text-xs mr-2" style="color:#999"></i>410 e.Kr. – Alarik og visigoterne plyndrer Rom</li>
+              <li><i class="fas fa-chevron-right text-xs mr-2" style="color:#999"></i>455 e.Kr. – Vandalerne plyndrer Rom igen</li>
+              <li><i class="fas fa-chevron-right text-xs mr-2" style="color:#999"></i>476 e.Kr. – Romulus Augustulus afsættes – Vestromerriget falder</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NØGLEPERSONER -->
+  <section id="personer" class="section gradient-bg fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Nøglepersoner</h2>
+      <p class="text-center text-gray-400 mb-12">Mændene og kvinderne der formede imperiet</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Julius Cæsar -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(212,175,55,.15);border:2px solid var(--gold)">
+              <i class="fas fa-crown gold-text"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Julius Cæsar</h3>
+              <p class="text-sm text-gray-400">100 – 44 f.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Militær-geniet der erobrede Gallien, krydsede Rubicon og blev diktator for livstid. Hans mord på Idus Martiae udløste borgerkrigen, der endte republikken.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Feltherre</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Politiker</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Diktator</span>
+          </div>
+        </div>
+
+        <!-- Augustus -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(46,111,161,.15);border:2px solid var(--blue)">
+              <i class="fas fa-star blue-accent"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Augustus</h3>
+              <p class="text-sm text-gray-400">63 f.Kr. – 14 e.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Roms første kejser og Cæsars adoptivsøn. Han transformerede republikken til et kejserdømme og indledte Pax Romana – to århundreders fred og velstand.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(46,111,161,.15);color:var(--blue)">Første kejser</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(46,111,161,.15);color:var(--blue)">Pax Romana</span>
+          </div>
+        </div>
+
+        <!-- Nero -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(192,57,43,.15);border:2px solid #c0392b">
+              <i class="fas fa-fire red-accent"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Nero</h3>
+              <p class="text-sm text-gray-400">37 – 68 e.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Berygtet for sin grusomhed og storhedsvanvid. Legenden siger, at han spillede lyre, mens Rom brændte i 64 e.Kr. Han forfulgte kristne og drev til sidst Senatet til at erklære ham fjende af staten.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(192,57,43,.15);color:#c0392b">Tyran</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(192,57,43,.15);color:#c0392b">Kontroversiel</span>
+          </div>
+        </div>
+
+        <!-- Trajan -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(212,175,55,.15);border:2px solid var(--gold)">
+              <i class="fas fa-globe gold-text"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Trajan</h3>
+              <p class="text-sm text-gray-400">53 – 117 e.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Under Trajan nåede Romerriget sin største udstrækning. Han erobrede Dacien og Mesopotamien og blev hyldet som Optimus Princeps – den bedste fyrste. Hans søjle i Rom står endnu.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Erobrer</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Optimus Princeps</span>
+          </div>
+        </div>
+
+        <!-- Marcus Aurelius -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(46,111,161,.15);border:2px solid var(--blue)">
+              <i class="fas fa-book blue-accent"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Marcus Aurelius</h3>
+              <p class="text-sm text-gray-400">121 – 180 e.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Filosoffen på tronen. Den stoiske kejser regerede under pest og krig, men skrev "Meditationer" – et af historiens mest indflydelsesrige filosofiske værker. Kendt som den sidste af de "fem gode kejsere".</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(46,111,161,.15);color:var(--blue)">Filosof</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(46,111,161,.15);color:var(--blue)">Stoiker</span>
+          </div>
+        </div>
+
+        <!-- Konstantin -->
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl" style="background:rgba(212,175,55,.15);border:2px solid var(--gold)">
+              <i class="fas fa-cross gold-text"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold playfair">Konstantin den Store</h3>
+              <p class="text-sm text-gray-400">272 – 337 e.Kr.</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-3">Den første kristne kejser. Med Ediktet fra Milano legaliserede han kristendommen og grundlagde Konstantinopel – den nye hovedstad der overlevede i over 1.000 år som det byzantinske rige.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Kristendom</span>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">Konstantinopel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE SLAG -->
+  <section id="slag" class="section fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Store Slag</h2>
+      <p class="text-center text-gray-400 mb-12">De afgørende kampe der ændrede Romerrigets skæbne</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Cannae -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:var(--gold)">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Slaget ved Cannae</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">216 f.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Hannibals mesterstykke. Med en dobbelt omringningsmanøvre tilintetgjorde den karthagiske hærfører en romersk hær på 80.000 mand. Roms værste militære nederlag nogensinde – men romerne gav aldrig op.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-skull mr-1"></i>~70.000 romerske tab</span>
+            <span><i class="fas fa-swords mr-1"></i>Punerkriger</span>
+          </div>
+        </div>
+
+        <!-- Zama -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:var(--blue)">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Slaget ved Zama</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(46,111,161,.15);color:var(--blue)">202 f.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Scipio Africanus' revanche. Ved Zama i Nordafrika besejrede Rom endelig Hannibal og afsluttede den Anden Punerkrig. Karthago blev reduceret til en vasalstat, og Rom blev Middelhavets ubestridte herre.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-trophy mr-1"></i>Romersk sejr</span>
+            <span><i class="fas fa-swords mr-1"></i>Punerkriger</span>
+          </div>
+        </div>
+
+        <!-- Alesia -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:var(--gold)">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Belejringen af Alesia</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(212,175,55,.15);color:var(--gold)">52 f.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Cæsars ingeniørmæssige triumf i Gallien. Romerne byggede to enorme forsvarslinjer – én rundt om Alesia og én mod den galliske undsætningshær. Vercingetorix overgav sig, og Gallien blev romersk.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-shield-halved mr-1"></i>Dobbelt belejring</span>
+            <span><i class="fas fa-swords mr-1"></i>Gallerkrigene</span>
+          </div>
+        </div>
+
+        <!-- Actium -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:#c0392b">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Slaget ved Actium</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(192,57,43,.15);color:#c0392b">31 f.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Det afgørende søslag, hvor Octavian besejrede Marcus Antonius og Kleopatra. Sejren gjorde Octavian til enehersker og markerede overgangen fra republik til kejserdømme. Ægypten blev en romersk provins.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-anchor mr-1"></i>Søslag</span>
+            <span><i class="fas fa-swords mr-1"></i>Borgerkrig</span>
+          </div>
+        </div>
+
+        <!-- Teutoburger Skoven -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:#c0392b">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Teutoburger Skoven</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(192,57,43,.15);color:#c0392b">9 e.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Arminius' baghold i Germaniens skove udslettede tre romerske legioner. Augustus skal angiveligt have råbt: "Varus, giv mig mine legioner tilbage!" Rom opgav aldrig drømmen om at erobre Germanien.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-skull mr-1"></i>3 legioner tabt</span>
+            <span><i class="fas fa-tree mr-1"></i>Baghold</span>
+          </div>
+        </div>
+
+        <!-- Adrianopel -->
+        <div class="card p-6 rounded-lg border-l-4" style="border-left-color:#555">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold playfair">Slaget ved Adrianopel</h3>
+            <span class="text-xs px-2 py-1 rounded-full" style="background:rgba(100,100,100,.15);color:#999">378 e.Kr.</span>
+          </div>
+          <p class="text-gray-300 mb-3">Goterne knuste den romerske hær og dræbte kejser Valens. Mange historikere ser dette slag som begyndelsen på enden for Vestromerriget. Det beviste, at barbarerne kunne besejre Roms legioner i åben kamp.</p>
+          <div class="flex items-center gap-4 text-sm text-gray-400">
+            <span><i class="fas fa-skull mr-1"></i>Kejser Valens dræbt</span>
+            <span><i class="fas fa-swords mr-1"></i>Begyndelsen på enden</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARVEN -->
+  <section id="arv" class="section gradient-bg fade">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold playfair text-center mb-4 gold-text">Romerrigets Arv</h2>
+      <p class="text-center text-gray-400 mb-12">Hvordan et imperium der faldt for 1.550 år siden stadig former vores verden</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(212,175,55,.15)">
+            <i class="fas fa-scale-balanced text-2xl gold-text"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Retssystemet</h3>
+          <p class="text-gray-300">Romerretten danner grundlag for de fleste europæiske retssystemer. Begreber som "uskyldig til det modsatte er bevist" stammer herfra.</p>
+        </div>
+
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(46,111,161,.15)">
+            <i class="fas fa-road text-2xl blue-accent"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Infrastruktur</h3>
+          <p class="text-gray-300">"Alle veje fører til Rom." Romerne byggede over 400.000 km vej, akvedukter, kloaksystemer og bygningsværker, der stadig står i dag.</p>
+        </div>
+
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(212,175,55,.15)">
+            <i class="fas fa-language text-2xl gold-text"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Sprog</h3>
+          <p class="text-gray-300">Latin er moder til de romanske sprog: italiensk, fransk, spansk, portugisisk og rumænsk. Utallige engelske og danske ord har latinske rødder.</p>
+        </div>
+
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(46,111,161,.15)">
+            <i class="fas fa-building-columns text-2xl blue-accent"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Arkitektur</h3>
+          <p class="text-gray-300">Buer, kupler, beton og søjleordener. Fra Pantheon til moderne parlamentsbygninger – romersk arkitektur inspirerer stadig verden over.</p>
+        </div>
+
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(212,175,55,.15)">
+            <i class="fas fa-landmark-dome text-2xl gold-text"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Politik &amp; Demokrati</h3>
+          <p class="text-gray-300">Senat, republik, veto, magistrat – romerne opfandt politiske institutioner og begreber, vi stadig bruger i dag.</p>
+        </div>
+
+        <div class="card p-6 rounded-lg text-center">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background:rgba(46,111,161,.15)">
+            <i class="fas fa-calendar-days text-2xl blue-accent"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Kalenderen</h3>
+          <p class="text-gray-300">Den julianske kalender, indført af Julius Cæsar i 46 f.Kr., er grundlaget for vores moderne kalender. Månederne juli og august er opkaldt efter Cæsar og Augustus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section fade text-center">
+    <div class="container mx-auto max-w-2xl">
+      <h2 class="text-3xl font-bold playfair mb-4 gold-text">Vil du vide mere?</h2>
+      <p class="text-lg text-gray-300 mb-8">Udforsk Romerriget i dybden med ThePastCast – via podcast, YouTube og sociale medier.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="index.html#platforms" class="border-2 border-yellow-600 px-6 py-3 rounded-lg hover:bg-yellow-900 hover:bg-opacity-40 transition">Se Platforme</a>
+        <a href="index.html" class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-3 rounded-lg hover:from-yellow-700 hover:to-yellow-800 text-black font-bold transition">Tilbage til Forsiden</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 px-6" style="background:#070d17">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/logo-gold.webp" alt="ThePastCast logo" class="w-10 h-10" loading="lazy">
+          <span class="text-lg font-bold playfair gold-text">ThePastCast</span>
+        </div>
+        <p class="text-gray-400">Hvor historien taler og bevæger sig. Vi gør fortiden levende gennem moderne digitale formater.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 gold-text">Hurtige Links</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="index.html" class="hover:text-white">Hjem</a></li>
+          <li><a href="#tidslinje" class="hover:text-white">Tidslinje</a></li>
+          <li><a href="#personer" class="hover:text-white">Nøglepersoner</a></li>
+          <li><a href="#slag" class="hover:text-white">Store Slag</a></li>
+          <li><a href="#arv" class="hover:text-white">Arven</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 gold-text">Følg Os</h4>
+        <div class="flex gap-4 text-2xl">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+      <p>&copy; 2025 ThePastCast. Alle rettigheder forbeholdes.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* smooth scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-70,behavior:'smooth'});}}));
+
+    /* fade-in on scroll */
+    const io=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target);}}),{threshold:.15});
+    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
